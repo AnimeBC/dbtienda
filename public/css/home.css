@@ -1,0 +1,27 @@
+body{margin: 0%;padding: 0%;}
+/*Contenido de la imagen*/
+#arriba{border-bottom-right-radius: 10%;border-bottom-left-radius: 10%;
+    background-color: rgb(67, 67, 67);padding: 1%;display: grid;grid-template-columns: 15% 60% 25%;gap: 1%;justify-content: center;text-align: center;}
+#arribaAa{width: 150px;height: 110px;object-fit: cover;border-radius: 10%;box-shadow: -5px 2px 5px 2px rgb(69, 69, 69);}
+#arribaAa:hover{cursor: pointer;transition: all 0.2s;box-shadow: -5px 2px 5px 2px rgb(225, 225, 225,0.8);}
+.link{list-style: none;text-decoration: none;}
+/*Contenido de la navegacion*/
+#arribaB{color:white;}
+/*Contenido de los contactos para que me contacte como usuario de creacion*/
+#arribaC{}
+#arribaC p{color:white;font-weight: 600;font-size: 1.5rem;position: relative;}
+#arribaC p::before{content: " ";background-color: red;width: 20%;height: 1%;position: absolute;bottom: 0%;}
+.whatsapp{width: 100%;text-align: center;}
+.whatsapp a{}
+.whatsapp a ion-icon{font-size: 2rem;color: white;}
+.whatsapp a ion-icon:hover{color:rgb(255, 206, 206);box-shadow: -1px 3px 2px 2px rgb(255, 206, 206);transition: all 0.2s;cursor: pointer;}
+/*-------------------------------*/
+/*cuerpo*/
+/*-------------------------------*/
+#contenido{display: flex;width: 100%;}
+#contenidoA{width: 20%;margin-right: 1%;}
+#navegacion{background-color: rgb(247, 247, 247);}
+.navegacionA{padding: 2%;padding-top: 5%;padding-bottom: 5%;text-align: right;background-color: rgb(235, 235, 235);margin-bottom: 1%;}
+.navegacionA a{text-decoration: none;color: rgb(118, 118, 118);list-style: none;font-weight: 600;font-size: 1.2rem;}
+.ñnavegacion a:hover{color: orange;}
+#contenidoB{width: 79%;}
