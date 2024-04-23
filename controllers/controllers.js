@@ -1,4 +1,5 @@
 //const cuerpo = require('../DB/cuerpo');
+const db = require("../sql_table/db")
 exports.inicio = async (req, res) => {
   try {
     if(req.cookies.nombre){
@@ -8,6 +9,7 @@ exports.inicio = async (req, res) => {
             Earriba: 'home.css',
             Econtenido: "home.css",
             Eizquierda: "home.css",
+            scripts: 'home.js',
             ingresante: "Login",
             imagen: 'uno.jpg',
           });
