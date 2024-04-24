@@ -1,6 +1,255 @@
 <div id="home">
   <div id="bitelA">
     <h2 class="titulo">Planes Moviles</h2>
+    <div class="planesA">
+      Contenido
+    </div>
+    <div class="planesB">
+      <div class="planesBA">
+        <h3
+          class="planesBAlink planesBAlinkActivo"
+          onclick="activarPlanes(this)"
+        >Planes Ilimitados</h3>
+        <h3 class="planesBAlink" onclick="activarPlanes(this)">Planes Flask</h3>
+        <h3 class="planesBAlink" onclick="activarPlanes(this)">Planes Estudiante</h3>
+      </div>
+
+      <div id="formularioPlanesA">
+        <form
+          id="planMovilFormIlimitado"
+          method="POST" action="/registrar_panIlimitado"
+        >
+          <h2>Registro de Plan Móvil Estudiante</h2>
+          <div id="planMovilFormIlimitadoA">
+            <div>
+              <label class="label" for="tipoPlan">Tipo de Plan:</label>
+              <input
+                class="input"
+                type="text"
+                id="tipoPlan"
+                value="Ilimitado"
+                disabled
+              />
+              <input type="hidden" name="tipoPlan" value="Ilimitado">
+            </div>
+
+            <div>
+              <label class="label" for="vpromocion">¿Tiene Promocion?</label>
+              <div class="eleccionFormA">
+                <div class="inputRadioA">
+                  <input
+                    type="radio"
+                    id="vpromocionSi"
+                    name="vpromocion"
+                    value="true"
+                    checked
+                    class="inputRadioInput"
+                  />
+                  <label for="vpromocionSi" class="inputRadioLabel">Sí</label>
+                </div>
+                <div class="inputRadioA">
+                  <input
+                    type="radio"
+                    id="vpromocionNo"
+                    name="vpromocion"
+                    value="false"
+                    class="inputRadioInput"
+                  />
+                  <label for="vpromocionNo" class="inputRadioLabel">No</label>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="label" for="tiempoPromocionDescuento">Tiempo de
+                Promoción con Descuento (Meses):</label>
+              <input
+                class="input"
+                type="number"
+                id="tiempoPromocionDescuento"
+                name="tiempoPromocionDescuento"
+              />
+            </div>
+
+            <div>
+              <label class="label" for="tiempoPromocionGb">Tiempo de Promoción
+                con GB adicionales (Meses):</label>
+              <input
+                class="input"
+                type="number"
+                id="tiempoPromocionGb"
+                name="tiempoPromocionGb"
+              />
+            </div>
+
+            <div>
+              <label class="label" for="descuento">Descuento (%):</label>
+              <input
+                class="input"
+                type="number"
+                id="descuento"
+                name="descuento"
+              />
+            </div>
+
+            <div>
+              <label class="label" for="llamadasIlimitadas">Llamadas Ilimitadas:</label>
+              <div class="eleccionFormA">
+                <div class="inputRadioA">
+                  <input
+                    type="radio"
+                    id="llamadasIlimitadasSi"
+                    name="llamadasIlimitadas"
+                    value="true"
+                    checked
+                    class="inputRadioInput"
+                  />
+                  <label
+                    for="llamadasIlimitadasSi"
+                    class="inputRadioLabel"
+                  >Sí</label>
+                </div>
+                <div class="inputRadioA">
+                  <input
+                    type="radio"
+                    id="llamadasIlimitadasNo"
+                    name="llamadasIlimitadas"
+                    value="false"
+                    class="inputRadioInput"
+                  />
+                  <label
+                    for="llamadasIlimitadasNo"
+                    class="inputRadioLabel"
+                  >No</label>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="label" for="internetIlimitado">Internet Ilimitado:</label>
+              <div class="eleccionFormA">
+                <div class="inputRadioA">
+                  <input
+                    type="radio"
+                    id="internetIlimitadoSi"
+                    name="internetIlimitado"
+                    value="true"
+                    checked
+                    class="inputRadioInput"
+                  />
+                  <label
+                    for="internetIlimitadoSi"
+                    class="inputRadioLabel"
+                  >Sí</label>
+                </div>
+                <div class="inputRadioA">
+                  <input
+                    type="radio"
+                    id="internetIlimitadoNo"
+                    name="internetIlimitado"
+                    value="false"
+                    class="inputRadioInput"
+                  />
+                  <label
+                    for="internetIlimitadoNo"
+                    class="inputRadioLabel"
+                  >No</label>
+                </div>
+              </div>
+
+            </div>
+
+            <div>
+              <label class="label" for="tipoChip">Tipo de chip (portabilidad, línea nueva, migración):</label>
+              <select class="elegirPlanIlimitado" id="tipoChip" name="tipoChip" required>
+                <option value="portabilidad" >Portabilidad</option>
+                <option value="lineaNueva">Línea Nueva</option>
+                <option value="migracion">Migración</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="label" for="bonoTiktok">Bono TikTok (GB):</label>
+              <input
+                class="input"
+                type="number"
+                id="bonoTiktok"
+                name="bonoTiktok"
+              />
+            </div>
+
+            <div>
+              <label class="label" for="precioBase">Precio Base:</label>
+              <input
+                class="input"
+                type="number"
+                id="precioBase"
+                name="precioBase"
+                step="0.01"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="label" for="precioPromocional">Precio Promocional:</label>
+              <input
+                class="input"
+                type="number"
+                id="precioPromocional"
+                name="precioPromocional"
+                step="0.01"
+              />
+            </div>
+
+            <div>
+              <label class="label" for="gbAcumulables">GB Acumulables:</label>
+              <input
+                class="input"
+                type="number"
+                id="gbAcumulables"
+                name="gbAcumulables"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="label" for="gbSpotify">GB Spotify:</label>
+              <input
+                class="input"
+                type="number"
+                id="gbSpotify"
+                name="gbSpotify"
+                required
+              />
+            </div>
+
+            <div>
+              <label class="label" for="gbTV360">GB TV360:</label>
+              <input
+                class="input"
+                type="number"
+                id="gbTV360"
+                name="gbTV360"
+                required
+              />
+            </div>
+          </div>
+          <div id="envio">
+            <button type="submit">Registrar Plan</button>
+          </div>
+        </form>
+      </div>
+      <div id="formularioPlanesB">
+        <form action="" method="post">
+          formulario
+        </form>
+      </div>
+      <div id="formularioPlanesC">
+        <form action="" method="post">
+          formulario
+        </form>
+      </div>
+    </div>
   </div>
   <div id="bitelB">Fibra Optica</div>
   <div id="bitelC">Accesorios o celulares</div>
