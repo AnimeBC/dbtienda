@@ -190,6 +190,8 @@ function editar(){
   });
 }
 /*function para eliminar tablas*/
+const flotante = document.getElementById("confirmarEliminarCarrusel").style.display="none"
 function eliminar(id){
-  
+  const flotante = document.getElementById("confirmarEliminarCarrusel")
+  flotante.style.display="block"
 }
