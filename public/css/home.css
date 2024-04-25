@@ -41,7 +41,46 @@ position: relative;}
 /*diseño de bitelA*/
 .titulo{text-align: center;font-size: 2rem;font-weight: 600;position: relative;}
 .titulo::before{content: " ";background-color: rgb(73, 73, 73);width: 20%;height: 1%;position: absolute;bottom: 0%;}
-.planesA{background-color: red;}
+/*contenido par amostrar y editar de los datos del formulario*/
+.planesA {background-color: rgb(210, 224, 224);overflow-x: hidden;width: 100%;cursor: pointer;}
+.slider {overflow: hidden;width: 100%;display: flex;}
+.carrusel {flex: 0 0 auto;position: relative;box-sizing: border-box;margin-right: 0.1%;width: 50px;}
+.carrusel {
+  -webkit-user-select: none;  /* Chrome, Safari, Opera */
+  -moz-user-select: none;     /* Firefox */
+  -ms-user-select: none;      /* Internet Explorer/Edge */
+  user-select: none;          /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+#tns1 > .tns-item {padding: 0 !important;}
+
+.eliminarCarrusel{position: absolute;top: 0%;left: 0%;color: white;border-top-left-radius: 10%;
+  padding: 5px 10px;cursor: pointer;background-color: rgba(255, 0, 0, 0.7);z-index: 1;}
+  .eliminarCarrusel:hover{background-color: rgb(176, 0, 0);;transition: all 0.2s;cursor: pointer;}
+  .editarCarrusel {position: absolute;top: 0%;right: 0%;color: white;padding: 5px 10px;cursor: pointer;border-top-right-radius: 10%;
+  background-color: rgba(54, 138, 15, 0.7);z-index: 100;}
+  .editarCarrusel:hover{background-color: rgb(40, 101, 11);transition: all 0.2s;cursor: pointer;}
+
+  .contenidoCarrusel {padding: 8%0%;width: 100%;background-color: white;border-radius: 8px;height: 80%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);text-align: center;}
+  .extraDatosCarrusel{display: flex;height: 10%;width: 100%;}
+  .precioBaseCarrusel{font-size: 4rem;font-weight: 600;height: 80%;text-align: center;}
+  .precioPromocioncalCarrusel{font-size: 1rem;font-weight: 600;height: 80%;text-align: left;width: 48%;margin-left: 2%;}
+  .tipoChipCarrusel{font-size: 1rem;font-weight: 600;height: 80%;text-align: right;width: 48%;}
+  #confirmarEliminarCarrusel{position: fixed;background-color: rgb(206, 253, 255);top: 25%;z-index: 2;left: 0%;right: 0%;width: 40%;
+    margin-left: 30%;cursor:auto;
+  padding: 2%;animation: ease-in-out 0.6s animacion;opacity: 98%;
+  }
+  #confirmarEliminarCarrusel p{text-align: center;font-size: 1.5rem;font-weight: 600;}
+  #confirmarEliminarCarrusel div{}
+  .confirmarEliminarCarrusel{display: grid;grid-template-columns: 48%48%;gap: 2%;text-align: center;justify-content: center;}
+  .confirmarEliminarCarruselA{background-color: rgb(158, 158, 158);padding: 3%6%;cursor: pointer;color: white;font-weight: 600;font-size: 1.2rem;}
+  .confirmarEliminarCarruselA:hover{transition: all 0.2s;background-color: rgb(197, 197, 197);;}
+  .confirmarEliminarCarruselB{background-color: red;padding: 3%6%;cursor: pointer;color: white;font-weight: 600;font-size: 1.2rem;}
+  .confirmarEliminarCarruselB:hover{transition: all 0.2s;background-color: rgb(255, 155, 155);}
+  @keyframes animacion{
+    0%{top: 0%;}
+  }
+/**/
 .planesB{}
 .planesBA{display: grid;grid-template-columns: repeat(auto-fill,30%);gap: 1%;text-align: center;justify-content: center;}
 .planesBAlink{background-color:rgb(224, 224, 224);padding: 2%;border-radius: 2%;cursor: pointer;color: rgb(100, 100, 100);}

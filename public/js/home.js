@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   Consultar();
   ver();
   activarPlanesTexto(1);
+  deslisar(); 
+  editar()
 });
 /*funcion de accion para la navegacion y para la izquierda y para la uri*/
 function activarNavegacion(element) {
@@ -51,7 +53,7 @@ function activarPlanes(clickedElement) {
       break;
   }
 }
-function activarPlanesTexto(valor) {
+function activarPlanesTexto(valor) {  
     const uno=document.getElementById("formularioPlanesA")
     const dos=document.getElementById("formularioPlanesB")
     const tres=document.getElementById("formularioPlanesC")
@@ -63,13 +65,13 @@ function activarPlanesTexto(valor) {
       break;
     case 2:
         uno.style.display="none"
-        dos.style.display="block"
+        dos.style.display="grid"
         tres.style.display="none"
       break;
     case 3:
         uno.style.display="none"
         dos.style.display="none"
-        tres.style.display="block"
+        tres.style.display="grid"
       break;
     default:
       break;
@@ -112,4 +114,82 @@ function submitPlanMovilFormIlimiado(event) {
     });
     console.log(data); // Here you could replace this with an AJAX request to submit the data
     alert("Formulario enviado. Revise la consola para ver los datos.");
+}
+/*funcion para inicar el loader*/
+function deslisar(){
+  var slider = tns({
+    container: '.slider',
+    items: 1,
+    slideBy: 'page',
+    mouseDrag: true,
+    swipeAngle: false,
+    speed: 400,
+    nav: false,
+    controls: false,
+    loop: true,
+    fixedWidth: 300, // Establece el ancho fijo de cada slide en 300px
+    autoWidth: false,
+    responsive: {
+      640: {
+        items: 2, // Ajusta según la necesidad
+        gutter: 20
+      },
+      1000: {
+        items: 3,
+        gutter: 30
+      }
+    }
+  });
+}
+/*funcion para rellenar el formuario al darclik en editar*/
+function editar(){
+  const editButtons = document.querySelectorAll('.editarCarrusel');
+
+  editButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const carrusel = this.closest('.carrusel');
+
+      // Extracción de datos específicos utilizando atributos de datos
+      const tipoPlan = carrusel.dataset.tipoPlan;
+      const vPromocion = carrusel.dataset.vpromocion === 'true'; // Asumiendo que el valor es 'true' o 'false' como string
+      const tiempoDescuento = carrusel.dataset.tiempoDescuento;
+      const tiempoGb = carrusel.dataset.tiempoGb;
+      const descuento = carrusel.dataset.descuento;
+      const llamadasIlimitadas = carrusel.dataset.llamadasIlimitadas === 'true';
+      const internetIlimitado = carrusel.dataset.internetIlimitado === 'true';
+      const tipoChip = carrusel.dataset.tipoChip;
+      const bonoTiktok = carrusel.dataset.bonoTiktok;
+      const precioBase = carrusel.dataset.precioBase;
+      const precioPromocional = carrusel.dataset.descuento; // Ejemplo específico mencionado
+      const gbAcumulables = carrusel.dataset.gbAcumulables;
+      const gbSpotify = carrusel.dataset.gbSpotify;
+      const gbTv360 = carrusel.dataset.gbTv360;
+
+      // Asignación de datos a los campos del formulario
+      document.getElementById('tipoPlan').value = tipoPlan;
+      document.getElementById('vpromocionSi').checked = vPromocion;
+      document.getElementById('vpromocionNo').checked = !vPromocion;
+      document.getElementById('tiempoPromocionDescuento').value = tiempoDescuento;
+      document.getElementById('tiempoPromocionGb').value = tiempoGb;
+      document.getElementById('descuento').value = descuento;
+      document.getElementById('llamadasIlimitadasSi').checked = llamadasIlimitadas;
+      document.getElementById('llamadasIlimitadasNo').checked = !llamadasIlimitadas;
+      document.getElementById('internetIlimitadoSi').checked = internetIlimitado;
+      document.getElementById('internetIlimitadoNo').checked = !internetIlimitado;
+      document.getElementById('tipoChip').value = tipoChip;
+      document.getElementById('bonoTiktok').value = bonoTiktok;
+      document.getElementById('precioBase').value = precioBase;
+      document.getElementById('precioPromocional').value = precioPromocional;
+      document.getElementById('gbAcumulables').value = gbAcumulables;
+      document.getElementById('gbSpotify').value = gbSpotify;
+      document.getElementById('gbTV360').value = gbTv360;
+
+      // Desplazamiento al formulario
+      document.getElementById('planMovilFormIlimitado').scrollIntoView();
+    });
+  });
+}
+/*function para eliminar tablas*/
+function eliminar(id){
+  
 }

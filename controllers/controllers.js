@@ -1,14 +1,15 @@
 //const cuerpo = require('../DB/cuerpo');
 const db = require("../sql_table/db");
 exports.inicio = async (req, res) => {
-  const datos = await db.query("select * from planMovil_Estudiante");
-  console.log(datos.rows);
+  const datos = await db.query("select * from planMovil_IliFla");
+  const listaTablas=datos.rows;
   try {
     if (req.cookies.nombre) {
       res.redirect(302, "/home");
     } else {
       res.render("inicio/home", {
         Earriba: "home.css",
+        Datos: listaTablas,
         Econtenido: "home.css",
         Eizquierda: "home.css",
         scripts: "home.js",
@@ -61,7 +62,7 @@ exports.registrar_panIlimitado = async (req, res) => {
     );
 
     console.log(result.rows[0]); // Muestra el ID del plan insertado
-    res.send("Plan registrado con éxito.");
+    return res.status(300).redirect("/")
   } catch (err) {
     console.error("Error al registrar el plan:", err.message);
     res.status(500).send("Error al procesar la solicitud.");
