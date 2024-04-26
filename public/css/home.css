@@ -74,7 +74,7 @@ position: relative;}
   #confirmarEliminarCarrusel div{}
   .confirmarEliminarCarrusel{display: grid;grid-template-columns: 48%48%;gap: 2%;text-align: center;justify-content: center;}
   .confirmarEliminarCarruselA{background-color: rgb(158, 158, 158);padding: 3%6%;cursor: pointer;color: white;font-weight: 600;font-size: 1.2rem;}
-  .confirmarEliminarCarruselA:hover{transition: all 0.2s;background-color: rgb(197, 197, 197);;}
+  .confirmarEliminarCarruselA:hover{transition: all 0.2s;background-color: rgb(197, 197, 197);}
   .confirmarEliminarCarruselB{background-color: red;padding: 3%6%;cursor: pointer;color: white;font-weight: 600;font-size: 1.2rem;}
   .confirmarEliminarCarruselB:hover{transition: all 0.2s;background-color: rgb(255, 155, 155);}
   @keyframes animacion{
@@ -118,10 +118,10 @@ position: relative;}
 }
 .elegirPlanIlimitado{background-color: transparent;padding: 2% 1%;border-radius: 1%;font-size: 1.1rem;color: rgb(91, 91, 91,0.9);
   margin-bottom: 3%;border: 2px solid rgb(91, 91, 91,0.5);width: 83%;}
-#envio {width: 60%;margin-left: 20%;border: solid 1px rgb(91, 91, 91,0.5);
+#envio button{width: 60%;margin-left: 20%;
   border-radius: 5%;background-color: transparent;text-align: center;padding: 1%1%;}
 #envio button[type="submit"] {background-color: transparent;color: rgb(0, 0, 0);font-size: 1.1rem;border: none;cursor: pointer;
-  padding: 1% 6%;transition: background-color 0.3s ease;}
-#envio:hover {background-color: rgba(179, 203, 203);cursor: pointer;transition: all 0.2s;}
+  padding: 1% 6%;transition: background-color 0.3s ease;border: solid 1px rgb(91, 91, 91,0.5);}
+#envio button:hover {background-color: rgba(179, 203, 203);cursor: pointer;transition: all 0.2s;}
 
 /**/

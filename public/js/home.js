@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ver();
   activarPlanesTexto(1);
   deslisar(); 
-  editar()
+  editar();
 });
 /*funcion de accion para la navegacion y para la izquierda y para la uri*/
 function activarNavegacion(element) {
@@ -142,16 +142,16 @@ function deslisar(){
   });
 }
 /*funcion para rellenar el formuario al darclik en editar*/
+
 function editar(){
   const editButtons = document.querySelectorAll('.editarCarrusel');
-
   editButtons.forEach(button => {
     button.addEventListener('click', function() {
       const carrusel = this.closest('.carrusel');
 
       // Extracción de datos específicos utilizando atributos de datos
       const tipoPlan = carrusel.dataset.tipoPlan;
-      const vPromocion = carrusel.dataset.vpromocion === 'true'; // Asumiendo que el valor es 'true' o 'false' como string
+      const vPromocion = carrusel.dataset.vpromocion === 'true';
       const tiempoDescuento = carrusel.dataset.tiempoDescuento;
       const tiempoGb = carrusel.dataset.tiempoGb;
       const descuento = carrusel.dataset.descuento;
@@ -164,7 +164,6 @@ function editar(){
       const gbAcumulables = carrusel.dataset.gbAcumulables;
       const gbSpotify = carrusel.dataset.gbSpotify;
       const gbTv360 = carrusel.dataset.gbTv360;
-
       // Asignación de datos a los campos del formulario
       document.getElementById('tipoPlan').value = tipoPlan;
       document.getElementById('vpromocionSi').checked = vPromocion;
@@ -186,12 +185,67 @@ function editar(){
 
       // Desplazamiento al formulario
       document.getElementById('planMovilFormIlimitado').scrollIntoView();
+      /* */
+      // Cambio del action y manejo del campo oculto
+      const ID = this.querySelector('#idDeEditar').value;
+      const form = document.getElementById('planMovilFormIlimitado');
+      form.action = '/editar_planilimitado/?' + ID;
+
+      let inputId = form.querySelector('input[name="id"]');
+      if (!inputId) {
+        inputId = document.createElement('input');
+        inputId.type = 'hidden';
+        inputId.name = 'id';
+        form.appendChild(inputId);
+      }
+      inputId.value = ID;
+      // Desplazamiento al formulario
+      form.scrollIntoView();
     });
+    
   });
 }
 /*function para eliminar tablas*/
-const flotante = document.getElementById("confirmarEliminarCarrusel").style.display="none"
+let ID=null;
+const flotante = document.getElementById("confirmarEliminarCarrusel");
+flotante.style.display="none"
+function cancelarCarruselA(){
+  flotante.style.display="none";
+}
 function eliminar(id){
-  const flotante = document.getElementById("confirmarEliminarCarrusel")
-  flotante.style.display="block"
+  flotante.style.display="block";
+  ID=id;
+}
+function enviarIdCarrusel(){
+  if(ID ===null){
+    alert("recarga la pagina parece que hay un error con la base de datos")
+  }else{
+    async function envioA(){
+      const url = "http://localhost:9001/eliminar_planilimitado";
+      const data = {
+        id: ID,
+      };
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      };
+      try {
+        const response = await fetch(url, options);
+        const responseData = await response.json(); // Asumiendo que el servidor responde con JSON
+        if (response.ok) {
+          alert(responseData.message);
+          window.location.href = "/"; // Redirecciona a la raíz
+        } else {
+          alert(responseData.error || responseData.message);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Ocurrió un error al procesar la solicitud.');
+      }
+    }
+    envioA()
+  }
 }

@@ -6,8 +6,8 @@
       <div id="confirmarEliminarCarrusel">
         <p>¿Estas seguro de que deseas borra la tabla?</p>
         <div class="confirmarEliminarCarrusel">
-          <div class="confirmarEliminarCarruselA">Cancelar</div>
-          <div class="confirmarEliminarCarruselB">Confirmar</div>
+          <div class="confirmarEliminarCarruselA" onclick="cancelarCarruselA()">Cancelar</div>
+          <div class="confirmarEliminarCarruselB" onclick="enviarIdCarrusel()">Confirmar</div>
         </div>
       </div>
       <div class="slider">
@@ -15,7 +15,7 @@
           <div
             class="carrusel"
             data-id="{{id}}"
-            data-id="{{id}}"
+            data-vpromocion="{{vpromocion}}"
             data-precio-base="{{precio_base}}"
             data-descuento="{{precio_promocional}}"
             data-tipo-plan="{{tipo_plan}}"
@@ -33,9 +33,11 @@
               class="eliminarCarrusel"
               onclick="eliminar({{id}})"
             >Eliminar</div>
-            <div class="editarCarrusel">Editar</div>
+            <div class="editarCarrusel">Editar
+              <input type="hidden" id="idDeEditar" value="{{id}}" >
+            </div>
             <div class="contenidoCarrusel">
-              <div class="precioBaseCarrusel">S/.{{precio_base}}</div>
+              <div class="precioBaseCarrusel">S/.{{precio_base}} </div>
               <div class="extraDatosCarrusel">
                 <div class="precioPromocioncalCarrusel">Descuento: S/.{{precio_promocional}}</div>
                 <div class="tipoChipCarrusel">Plan: {{tipo_plan}}</div>
@@ -59,7 +61,7 @@
         <form
           id="planMovilFormIlimitado"
           method="POST"
-          action="/registrar_panIlimitado"
+          action="/registrar_planilimitado"
         >
           <h2>Registro de Plan Móvil Estudiante</h2>
           <div id="planMovilFormIlimitadoA">
@@ -279,6 +281,15 @@
                 id="gbTV360"
                 name="gbTV360"
                 required
+              />
+            </div>
+            <div>
+              <label class="label" for="gbTV360">GB TV360:</label>
+              <input
+                class="input"
+                type="number"
+                id="gbTV360"
+                name="gbTV360"
               />
             </div>
           </div>
