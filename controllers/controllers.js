@@ -1,5 +1,16 @@
-//const cuerpo = require('../DB/cuerpo');
 const db = require("../sql_table/db");
+const multer = require("multer")
+const path = require("path")
+// Configuración de almacenamiento para Multer
+const storage = multer.diskStorage({
+  destination: (req, fle, cb) => {
+      cb(null, 'upiloads/');  // Asegúrate de que este directorio existe
+  },
+  filename: (req, file, cb) => {
+      cb(null, `${Date.now()}-${path.extname(file.originalname)}`);
+  }
+});
+const upload = multer({ storage: storage });
 exports.inicio = async (req, res) => {
   const datos = await db.query("select * from planMovil_IliFla");
   const listaTablas = datos.rows;
@@ -23,6 +34,8 @@ exports.inicio = async (req, res) => {
 };
 exports.registrar_planIlimitado = async (req, res) => {
   try {
+    const archivo = req.file;
+    console.log(archivo);
     const {
       tipoPlan,
       vpromocion,
@@ -38,11 +51,12 @@ exports.registrar_planIlimitado = async (req, res) => {
       gbAcumulables,
       gbSpotify,
       gbTV360,
+      gbpromocionacumulables
     } = req.body;
 
     // Consulta para insertar datos
     const result = await db.query(
-      `INSERT INTO planmovil_ilifla (Tipo_Plan, VPromocion, Tiempo_Promocion_Descuento, Tiempo_Promocion_Gb, Descuento, Llamadas_Ilimitadas, Internet_Ilimitado, Tipo_Chip, Bono_Tiktok, Precio_Base, Precio_Promocional, Gb_Acumulables, Gb_Spotify, Gb_TV360) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING Id`,
+      `INSERT INTO planmovil_ilifla (Tipo_Plan, VPromocion, Tiempo_Promocion_Descuento, Tiempo_Promocion_Gb, Descuento, Llamadas_Ilimitadas, Internet_Ilimitado, Tipo_Chip, Bono_Tiktok, Precio_Base, Precio_Promocional, Gb_Acumulables, Gb_Spotify, Gb_TV360,Gb_promocion_acumulables) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14,$15) RETURNING Id`,
       [
         tipoPlan,
         vpromocion,
@@ -58,6 +72,7 @@ exports.registrar_planIlimitado = async (req, res) => {
         gbAcumulables,
         gbSpotify,
         gbTV360,
+        gbpromocionacumulables
       ]
     );
 
@@ -110,9 +125,8 @@ exports.editar_planilimitado = async (req, res) => {
       gbAcumulables,
       gbSpotify,
       gbTV360,
+      gbpromocionacumulables
     } = req.body;
-    console.log(req.body);
-
     if (vpromocion === undefined) {
       return res.status(400).send("El valor de vPromocion no puede ser nulo.");
     }
@@ -121,7 +135,6 @@ exports.editar_planilimitado = async (req, res) => {
     const vPromocionBoolean = vpromocion === "true";
     const llamadasIlimitadasBoolean = llamadasIlimitadas === "true";
     const internetIlimitadoBoolean = internetIlimitado === "true";
-    console.log(vPromocionBoolean);
     const query = `
       UPDATE planmovil_ilifla
       SET
@@ -138,7 +151,8 @@ exports.editar_planilimitado = async (req, res) => {
         Precio_Promocional = $11,
         Gb_Acumulables = $12,
         Gb_Spotify = $13,
-        Gb_TV360 = $14
+        Gb_TV360 = $14,
+        Gb_promocion_acumulables = $16
         WHERE Id = $15
     `;
     const values = [
@@ -157,6 +171,7 @@ exports.editar_planilimitado = async (req, res) => {
       parseInt(gbSpotify, 10),
       parseInt(gbTV360, 10),
       id,
+      parseInt(gbpromocionacumulables, 10)    
     ];
   
     await db.query(query, values);

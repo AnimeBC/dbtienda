@@ -1,202 +1,210 @@
-<div id="home">
-  <div id="bitelA">
-    <h2 class="titulo">Planes Moviles</h2>
+<div id='home'>
+  <div id='bitelA'>
+    <h2 class='titulo'>Planes Moviles</h2>
 
-    <div class="planesA">
-      <div id="confirmarEliminarCarrusel">
+    <div class='planesA'>
+      <div id='confirmarEliminarCarrusel'>
         <p>¿Estas seguro de que deseas borra la tabla?</p>
-        <div class="confirmarEliminarCarrusel">
-          <div class="confirmarEliminarCarruselA" onclick="cancelarCarruselA()">Cancelar</div>
-          <div class="confirmarEliminarCarruselB" onclick="enviarIdCarrusel()">Confirmar</div>
+        <div class='confirmarEliminarCarrusel'>
+          <div
+            class='confirmarEliminarCarruselA'
+            onclick='cancelarCarruselA()'
+          >Cancelar</div>
+          <div
+            class='confirmarEliminarCarruselB'
+            onclick='enviarIdCarrusel()'
+          >Confirmar</div>
         </div>
       </div>
-      <div class="slider">
+      <div class='slider'>
         {{#each Datos}}
           <div
-            class="carrusel"
-            data-id="{{id}}"
-            data-vpromocion="{{vpromocion}}"
-            data-precio-base="{{precio_base}}"
-            data-descuento="{{precio_promocional}}"
-            data-tipo-plan="{{tipo_plan}}"
-            data-tiempo-descuento="{{tiempo_promocion_descuento}}"
-            data-tiempo-gb="{{tiempo_promocion_gb}}"
-            data-internet-ilimitado="{{internet_ilimitado}}"
-            data-llamadas-ilimitadas="{{llamadas_ilimitadas}}"
-            data-tipo-chip="{{tipo_chip}}"
-            data-bono-tiktok="{{bono_tiktok}}"
-            data-gb-acumulables="{{gb_acumulables}}"
-            data-gb-spotify="{{gb_spotify}}"
-            data-gb-tv360="{{gb_tv360}}"
+            class='carrusel'
+            data-id='{{id}}'
+            data-vpromocion='{{vpromocion}}'
+            data-precio-base='{{precio_base}}'
+            data-descuento='{{precio_promocional}}'
+            data-tipo-plan='{{tipo_plan}}'
+            data-tiempo-descuento='{{tiempo_promocion_descuento}}'
+            data-tiempo-gb='{{tiempo_promocion_gb}}'
+            data-internet-ilimitado='{{internet_ilimitado}}'
+            data-llamadas-ilimitadas='{{llamadas_ilimitadas}}'
+            data-tipo-chip='{{tipo_chip}}'
+            data-bono-tiktok='{{bono_tiktok}}'
+            data-gb-acumulables='{{gb_acumulables}}'
+            data-gb-spotify='{{gb_spotify}}'
+            data-gb-tv360='{{gb_tv360}}'
+            data-gbpromocionacumulables='{{gb_promocion_acumulables}}'
           >
             <div
-              class="eliminarCarrusel"
-              onclick="eliminar({{id}})"
+              class='eliminarCarrusel'
+              onclick='eliminar({{id}})'
             >Eliminar</div>
-            <div class="editarCarrusel">Editar
-              <input type="hidden" id="idDeEditar" value="{{id}}" >
+            <div class='editarCarrusel'>Editar
+              <input type='hidden' id='idDeEditar' value='{{id}}' />
             </div>
-            <div class="contenidoCarrusel">
-              <div class="precioBaseCarrusel">S/.{{precio_base}} </div>
-              <div class="extraDatosCarrusel">
-                <div class="precioPromocioncalCarrusel">Descuento: S/.{{precio_promocional}}</div>
-                <div class="tipoChipCarrusel">Plan: {{tipo_plan}}</div>
+            <div class='contenidoCarrusel'>
+              <div class='precioBaseCarrusel'>S/.{{precio_base}} </div>
+              <div class='extraDatosCarrusel'>
+                <div class='precioPromocioncalCarrusel'>Descuento: S/.{{precio_promocional}}</div>
+                <div class='tipoChipCarrusel'>Plan: {{tipo_plan}}</div>
               </div>
             </div>
           </div>
         {{/each}}
       </div>
     </div>
-    <div class="planesB">
-      <div class="planesBA">
+    <div class='planesB'>
+      <div class='planesBA'>
         <h3
-          class="planesBAlink planesBAlinkActivo"
-          onclick="activarPlanes(this)"
+          class='planesBAlink planesBAlinkActivo'
+          onclick='activarPlanes(this)'
         >Planes Ilimitados</h3>
-        <h3 class="planesBAlink" onclick="activarPlanes(this)">Planes Flask</h3>
-        <h3 class="planesBAlink" onclick="activarPlanes(this)">Planes Estudiante</h3>
+        <h3 class='planesBAlink' onclick='activarPlanes(this)'>Planes Flask</h3>
+        <h3 class='planesBAlink' onclick='activarPlanes(this)'>Planes Estudiante</h3>
       </div>
 
-      <div id="formularioPlanesA">
+      <div id='formularioPlanesA'>
         <form
-          id="planMovilFormIlimitado"
-          method="POST"
-          action="/registrar_planilimitado"
+          id='planMovilFormIlimitado'
+          method='POST'
+          action='/registrar_planilimitado'
+          enctype='multipart/form-data'
         >
           <h2>Registro de Plan Móvil Estudiante</h2>
-          <div id="planMovilFormIlimitadoA">
+          <div id='planMovilFormIlimitadoA'>
             <div>
-              <label class="label" for="tipoPlan">Tipo de Plan:</label>
+              <label class='label' for='tipoPlan'>Tipo de Plan:</label>
               <input
-                class="input"
-                type="text"
-                id="tipoPlan"
-                value="Ilimitado"
+                class='input'
+                type='text'
+                id='tipoPlan'
+                value='Ilimitado'
                 disabled
               />
-              <input type="hidden" name="tipoPlan" value="Ilimitado" />
+              <input type='hidden' name='tipoPlan' value='Ilimitado' />
             </div>
 
             <div>
-              <label class="label" for="vpromocion">¿Tiene Promocion?</label>
-              <div class="eleccionFormA">
-                <div class="inputRadioA">
+              <label class='label' for='vpromocion'>¿Tiene Promocion?</label>
+              <div class='eleccionFormA'>
+                <div class='inputRadioA'>
                   <input
-                    type="radio"
-                    id="vpromocionSi"
-                    name="vpromocion"
-                    value="true"
+                    type='radio'
+                    id='vpromocionSi'
+                    name='vpromocion'
+                    value='true'
                     checked
-                    class="inputRadioInput"
+                    class='inputRadioInput'
                   />
-                  <label for="vpromocionSi" class="inputRadioLabel">Sí</label>
+                  <label for='vpromocionSi' class='inputRadioLabel'>Sí</label>
                 </div>
-                <div class="inputRadioA">
+                <div class='inputRadioA'>
                   <input
-                    type="radio"
-                    id="vpromocionNo"
-                    name="vpromocion"
-                    value="false"
-                    class="inputRadioInput"
+                    type='radio'
+                    id='vpromocionNo'
+                    name='vpromocion'
+                    value='false'
+                    class='inputRadioInput'
                   />
-                  <label for="vpromocionNo" class="inputRadioLabel">No</label>
+                  <label for='vpromocionNo' class='inputRadioLabel'>No</label>
                 </div>
               </div>
             </div>
 
             <div>
-              <label class="label" for="tiempoPromocionDescuento">Tiempo de
+              <label class='label' for='tiempoPromocionDescuento'>Tiempo de
                 Promoción con Descuento (Meses):</label>
               <input
-                class="input"
-                type="number"
-                id="tiempoPromocionDescuento"
-                name="tiempoPromocionDescuento"
+                class='input'
+                type='number'
+                id='tiempoPromocionDescuento'
+                name='tiempoPromocionDescuento'
               />
             </div>
 
             <div>
-              <label class="label" for="tiempoPromocionGb">Tiempo de Promoción
+              <label class='label' for='tiempoPromocionGb'>Tiempo de Promoción
                 con GB adicionales (Meses):</label>
               <input
-                class="input"
-                type="number"
-                id="tiempoPromocionGb"
-                name="tiempoPromocionGb"
+                class='input'
+                type='number'
+                id='tiempoPromocionGb'
+                name='tiempoPromocionGb'
               />
             </div>
 
             <div>
-              <label class="label" for="descuento">Descuento (%):</label>
+              <label class='label' for='descuento'>Descuento (%):</label>
               <input
-                class="input"
-                type="number"
-                id="descuento"
-                name="descuento"
+                class='input'
+                type='number'
+                id='descuento'
+                name='descuento'
               />
             </div>
 
             <div>
-              <label class="label" for="llamadasIlimitadas">Llamadas Ilimitadas:</label>
-              <div class="eleccionFormA">
-                <div class="inputRadioA">
+              <label class='label' for='llamadasIlimitadas'>Llamadas Ilimitadas:</label>
+              <div class='eleccionFormA'>
+                <div class='inputRadioA'>
                   <input
-                    type="radio"
-                    id="llamadasIlimitadasSi"
-                    name="llamadasIlimitadas"
-                    value="true"
+                    type='radio'
+                    id='llamadasIlimitadasSi'
+                    name='llamadasIlimitadas'
+                    value='true'
                     checked
-                    class="inputRadioInput"
+                    class='inputRadioInput'
                   />
                   <label
-                    for="llamadasIlimitadasSi"
-                    class="inputRadioLabel"
+                    for='llamadasIlimitadasSi'
+                    class='inputRadioLabel'
                   >Sí</label>
                 </div>
-                <div class="inputRadioA">
+                <div class='inputRadioA'>
                   <input
-                    type="radio"
-                    id="llamadasIlimitadasNo"
-                    name="llamadasIlimitadas"
-                    value="false"
-                    class="inputRadioInput"
+                    type='radio'
+                    id='llamadasIlimitadasNo'
+                    name='llamadasIlimitadas'
+                    value='false'
+                    class='inputRadioInput'
                   />
                   <label
-                    for="llamadasIlimitadasNo"
-                    class="inputRadioLabel"
+                    for='llamadasIlimitadasNo'
+                    class='inputRadioLabel'
                   >No</label>
                 </div>
               </div>
             </div>
 
             <div>
-              <label class="label" for="internetIlimitado">Internet Ilimitado:</label>
-              <div class="eleccionFormA">
-                <div class="inputRadioA">
+              <label class='label' for='internetIlimitado'>Internet Ilimitado:</label>
+              <div class='eleccionFormA'>
+                <div class='inputRadioA'>
                   <input
-                    type="radio"
-                    id="internetIlimitadoSi"
-                    name="internetIlimitado"
-                    value="true"
+                    type='radio'
+                    id='internetIlimitadoSi'
+                    name='internetIlimitado'
+                    value='true'
                     checked
-                    class="inputRadioInput"
+                    class='inputRadioInput'
                   />
                   <label
-                    for="internetIlimitadoSi"
-                    class="inputRadioLabel"
+                    for='internetIlimitadoSi'
+                    class='inputRadioLabel'
                   >Sí</label>
                 </div>
-                <div class="inputRadioA">
+                <div class='inputRadioA'>
                   <input
-                    type="radio"
-                    id="internetIlimitadoNo"
-                    name="internetIlimitado"
-                    value="false"
-                    class="inputRadioInput"
+                    type='radio'
+                    id='internetIlimitadoNo'
+                    name='internetIlimitado'
+                    value='false'
+                    class='inputRadioInput'
                   />
                   <label
-                    for="internetIlimitadoNo"
-                    class="inputRadioLabel"
+                    for='internetIlimitadoNo'
+                    class='inputRadioLabel'
                   >No</label>
                 </div>
               </div>
@@ -204,112 +212,139 @@
             </div>
 
             <div>
-              <label class="label" for="tipoChip">Tipo de chip (portabilidad,
+              <label class='label' for='tipoChip'>Tipo de chip (portabilidad,
                 línea nueva, migración):</label>
               <select
-                class="elegirPlanIlimitado"
-                id="tipoChip"
-                name="tipoChip"
+                class='elegirPlanIlimitado'
+                id='tipoChip'
+                name='tipoChip'
                 required
               >
-                <option value="portabilidad">Portabilidad</option>
-                <option value="lineaNueva">Línea Nueva</option>
-                <option value="migracion">Migración</option>
+                <option value='portabilidad'>Portabilidad</option>
+                <option value='lineaNueva'>Línea Nueva</option>
+                <option value='migracion'>Migración</option>
               </select>
             </div>
 
             <div>
-              <label class="label" for="bonoTiktok">Bono TikTok (GB):</label>
+              <label class='label' for='bonoTiktok'>Bono TikTok (GB):</label>
               <input
-                class="input"
-                type="number"
-                id="bonoTiktok"
-                name="bonoTiktok"
+                class='input'
+                type='number'
+                id='bonoTiktok'
+                name='bonoTiktok'
               />
             </div>
 
             <div>
-              <label class="label" for="precioBase">Precio Base:</label>
+              <label class='label' for='precioBase'>Precio Base:</label>
               <input
-                class="input"
-                type="number"
-                id="precioBase"
-                name="precioBase"
-                step="0.01"
+                class='input'
+                type='number'
+                id='precioBase'
+                name='precioBase'
+                step='0.01'
                 required
               />
             </div>
 
             <div>
-              <label class="label" for="precioPromocional">Precio Promocional:</label>
+              <label class='label' for='precioPromocional'>Precio Promocional:</label>
               <input
-                class="input"
-                type="number"
-                id="precioPromocional"
-                name="precioPromocional"
-                step="0.01"
+                class='input'
+                type='number'
+                id='precioPromocional'
+                name='precioPromocional'
+                step='0.01'
               />
             </div>
 
             <div>
-              <label class="label" for="gbAcumulables">GB Acumulables:</label>
+              <label class='label' for='gbAcumulables'>GB Acumulables:</label>
               <input
-                class="input"
-                type="number"
-                id="gbAcumulables"
-                name="gbAcumulables"
+                class='input'
+                type='number'
+                id='gbAcumulables'
+                name='gbAcumulables'
                 required
               />
             </div>
 
             <div>
-              <label class="label" for="gbSpotify">GB Spotify:</label>
+              <label class='label' for='gbSpotify'>GB Spotify:</label>
               <input
-                class="input"
-                type="number"
-                id="gbSpotify"
-                name="gbSpotify"
+                class='input'
+                type='number'
+                id='gbSpotify'
+                name='gbSpotify'
                 required
               />
             </div>
 
             <div>
-              <label class="label" for="gbTV360">GB TV360:</label>
+              <label class='label' for='gbTV360'>GB TV360:</label>
               <input
-                class="input"
-                type="number"
-                id="gbTV360"
-                name="gbTV360"
+                class='input'
+                type='number'
+                id='gbTV360'
+                name='gbTV360'
                 required
               />
             </div>
             <div>
-              <label class="label" for="gbTV360">GB TV360:</label>
+              <label class='label' for='gbTV360'>GB acumulables extras de
+                promocion</label>
               <input
-                class="input"
-                type="number"
-                id="gbTV360"
-                name="gbTV360"
+                class='input'
+                type='number'
+                id='gbpromocionacumulables'
+                name='gbpromocionacumulables'
               />
+            </div>
+            <div>
+              <label class='label' for='imagenPlanIlimitado'>Imagen de
+                representación del plan</label>
+              <div class='subirArchivo'>
+                <button
+                  class='subirArchivoBoton'
+                  type='button'
+                  onclick="document.getElementById('imagenPlanIlimitado').click()"
+                >Elegir Imagen</button>
+                <input
+                  id='imagenPlanIlimitado'
+                  name='imagenPlanIlimitado'
+                  type='file'
+                  style='display: none;'
+                  accept='image/*'
+                  onchange='previzualisarImagen();'
+                />
+                <div id='preview-container'>
+                  <img
+                    id='imagePreview'
+                    style='max-height: 100px; display: none;'
+                  />
+                </div>
+
+              </div>
             </div>
           </div>
-          <div id="envio">
-            <button type="submit">Registrar Plan</button>
+          <div id='envio'>
+            <button type='submit'>Registrar Plan</button>
           </div>
         </form>
       </div>
-      <div id="formularioPlanesB">
-        <form action="" method="post">
+      <div id='formularioPlanesB'>
+        <form action='' method='post'>
           formulario
         </form>
       </div>
-      <div id="formularioPlanesC">
-        <form action="" method="post">
+      <div id='formularioPlanesC'>
+        <form action='' method='post'>
           formulario
         </form>
       </div>
     </div>
   </div>
-  <div id="bitelB">Fibra Optica</div>
-  <div id="bitelC">Accesorios o celulares</div>
+  <div id='bitelB'>Fibra Optica</div>
+  <div id='bitelC'>Accesorios o celulares</div>
 </div>

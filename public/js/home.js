@@ -164,6 +164,8 @@ function editar(){
       const gbAcumulables = carrusel.dataset.gbAcumulables;
       const gbSpotify = carrusel.dataset.gbSpotify;
       const gbTv360 = carrusel.dataset.gbTv360;
+      const gbpromocionacumulables = carrusel.dataset.gbpromocionacumulables;
+
       // Asignación de datos a los campos del formulario
       document.getElementById('tipoPlan').value = tipoPlan;
       document.getElementById('vpromocionSi').checked = vPromocion;
@@ -182,7 +184,7 @@ function editar(){
       document.getElementById('gbAcumulables').value = gbAcumulables;
       document.getElementById('gbSpotify').value = gbSpotify;
       document.getElementById('gbTV360').value = gbTv360;
-
+      document.getElementById('gbpromocionacumulables').value = gbpromocionacumulables;
       // Desplazamiento al formulario
       document.getElementById('planMovilFormIlimitado').scrollIntoView();
       /* */
@@ -249,3 +251,24 @@ function enviarIdCarrusel(){
     envioA()
   }
 }
+/**funcion para ver archivos */
+function previzualisarImagen() {
+  let file = document.getElementById('imagenPlanIlimitado').files;
+  if (file.length > 0) {
+    let fileReader = new FileReader();
+    fileReader.onload = function(event) {
+      document.getElementById('imagePreview').setAttribute('src', event.target.result);
+      document.getElementById('imagePreview').style.display = 'inline-block';
+    };
+    fileReader.readAsDataURL(file[0]);
+  }
+}
+
+document.getElementById('previzualisarImagen').addEventListener('click', function() {
+  let img = document.getElementById('imagePreview');
+  if (img.classList.contains('zoomed')) {
+    img.classList.remove('zoomed');
+  } else {
+    img.classList.add('zoomed');
+  }
+});

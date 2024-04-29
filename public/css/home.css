@@ -124,4 +124,11 @@ position: relative;}
   padding: 1% 6%;transition: background-color 0.3s ease;border: solid 1px rgb(91, 91, 91,0.5);}
 #envio button:hover {background-color: rgba(179, 203, 203);cursor: pointer;transition: all 0.2s;}
 
+.subirArchivo {display: flex;align-items: center;gap: 2%;}
+.subirArchivoBoton {padding: 6px 12px;background-color: #007bff;color: white;
+  border: none;border-radius: 4px;cursor: pointer;}
+#previsualizarImagen {display: flex;width: auto;}
+#imagePreview {max-height: 100px;width: auto;transition: transform 0.3s ease, max-height 0.3s ease;cursor: pointer;display: block;}
+#imagePreview.zoomed {transform: scale(8);z-index: 1000;position: fixed;top: 50%;left: 50%;
+  transform: translate(-50%, -50%) scale(8);max-height: none;}
 /**/
