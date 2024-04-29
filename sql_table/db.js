@@ -5,7 +5,7 @@ const pool = new Pool({
   host: 'localhost',
   database: 'tienda',
   password: '123456',
-  port: 3306,
+  port: 5432,
 });
 module.exports = {
   query: (text, params) => pool.query(text, params),

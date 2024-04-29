@@ -165,7 +165,7 @@ function editar(){
       const gbSpotify = carrusel.dataset.gbSpotify;
       const gbTv360 = carrusel.dataset.gbTv360;
       const gbpromocionacumulables = carrusel.dataset.gbpromocionacumulables;
-
+      const imagenUrl = carrusel.dataset.imagenUrl;
       // Asignación de datos a los campos del formulario
       document.getElementById('tipoPlan').value = tipoPlan;
       document.getElementById('vpromocionSi').checked = vPromocion;
@@ -185,8 +185,12 @@ function editar(){
       document.getElementById('gbSpotify').value = gbSpotify;
       document.getElementById('gbTV360').value = gbTv360;
       document.getElementById('gbpromocionacumulables').value = gbpromocionacumulables;
+      document.getElementById('imagenLadoDerechoA').src = imagenUrl;
+      document.getElementById('imagenZoomA').setAttribute('src', imagenUrl);
       // Desplazamiento al formulario
       document.getElementById('planMovilFormIlimitado').scrollIntoView();
+      document.getElementById('imagenLadoDerechoA').style.display = 'block';
+
       /* */
       // Cambio del action y manejo del campo oculto
       const ID = this.querySelector('#idDeEditar').value;
@@ -257,18 +261,27 @@ function previzualisarImagen() {
   if (file.length > 0) {
     let fileReader = new FileReader();
     fileReader.onload = function(event) {
-      document.getElementById('imagePreview').setAttribute('src', event.target.result);
-      document.getElementById('imagePreview').style.display = 'inline-block';
+      document.getElementById('imagenLadoDerechoA').setAttribute('src', event.target.result);
+      document.getElementById('imagenZoomA').setAttribute('src', event.target.result);
+      document.getElementById('imagenLadoDerechoA').style.display = 'inline-block';
     };
     fileReader.readAsDataURL(file[0]);
   }
 }
-
-document.getElementById('previzualisarImagen').addEventListener('click', function() {
-  let img = document.getElementById('imagePreview');
-  if (img.classList.contains('zoomed')) {
-    img.classList.remove('zoomed');
+function zoomImagenA(){
+    const escondido=document.getElementById("escodidoImagenA")
+    escondido.style.display="flex"
+}
+function salirDeImagenA(){
+  const escondido=document.getElementById("escodidoImagenA")
+  escondido.style.display="none"
+}
+function imagenZoomAGrandeA(){
+  event.stopPropagation(); 
+  let img = document.getElementById('imagenZoomA');
+  if (img.classList.contains('ampliacion')) {
+    img.classList.remove('ampliacion');
   } else {
-    img.classList.add('zoomed');
+    img.classList.add('ampliacion');
   }
-});
+}

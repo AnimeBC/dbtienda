@@ -14,4 +14,6 @@ Precio_Promocional DECIMAL(10,2),
 Gb_Acumulables INT NOT NULL,
 Gb_promocion_acumulables INT,
 Gb_Spotify INT NOT NULL,
-Gb_TV360 INT NOT NULL);
+Gb_TV360 INT NOT NULL,
+Imagen text
+);

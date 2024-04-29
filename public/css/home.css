@@ -128,7 +128,11 @@ position: relative;}
 .subirArchivoBoton {padding: 6px 12px;background-color: #007bff;color: white;
   border: none;border-radius: 4px;cursor: pointer;}
 #previsualizarImagen {display: flex;width: auto;}
-#imagePreview {max-height: 100px;width: auto;transition: transform 0.3s ease, max-height 0.3s ease;cursor: pointer;display: block;}
-#imagePreview.zoomed {transform: scale(8);z-index: 1000;position: fixed;top: 50%;left: 50%;
-  transform: translate(-50%, -50%) scale(8);max-height: none;}
-/**/
+#imagenLadoDerecho {max-height: 100px;width: auto;transition: transform 0.3s ease, max-height 0.3s ease;cursor: pointer;display: block;}
+#escodidoImagenA{position: fixed;z-index: 2;;left: 0%;top: 0%;width: 100%;height: 100vh;
+  background-color: rgb(0, 0, 0,0.3);display: none;justify-content: center;align-items: center;}
+#imagenZoomA{width: 35%;height: 60vh;display: flex;
+}
+.ampliacion {position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%) scale(1.6);
+  z-index: 5;cursor: pointer;transition: all 1s;
+}

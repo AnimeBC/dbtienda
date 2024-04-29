@@ -16,7 +16,8 @@ aplicacion.use(
     parameterLimit: 1000000,
   }),
 );
-//
+//// Middleware para servir archivos estáticos
+aplicacion.use('/imagenes', express.static(path.join(__dirname, 'imagenes')));
 aplicacion.use(express.static(path.join(__dirname, 'public')));
 aplicacion.set('view engine', '.hbs');
 aplicacion.set('views', path.join(__dirname + '/views'));
