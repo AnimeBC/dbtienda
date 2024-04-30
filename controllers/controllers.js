@@ -128,7 +128,7 @@ exports.editar_planilimitado = async (req, res) => {
     const {
       id,
       tipoPlan,
-      vpromocion, // Este valor debe ser 'true' o 'false' como string
+      vpromocion,
       tiempoPromocionDescuento,
       tiempoPromocionGb,
       descuento,
@@ -142,18 +142,36 @@ exports.editar_planilimitado = async (req, res) => {
       gbSpotify,
       gbTV360,
       gbpromocionacumulables,
-    } = req.body
-    if (vpromocion === undefined) {
-      return res.status(400).send('El valor de vPromocion no puede ser nulo.')
+    } = req.body;
+    console.log(req.body);
+    // First, fetch the current data from the database
+    const currentData = await db.query('SELECT Imagen FROM planmovil_ilifla WHERE Id = $1', [id]);
+    if (currentData.rows.length === 0) {
+      // Handle case where no plan matches the given ID
+      return res.status(404).json({ message: 'No plan found with the provided ID.' });
     }
 
-    // Convertir valores booleanos de string a boolean
-    const vPromocionBoolean = vpromocion === 'true'
-    const llamadasIlimitadasBoolean = llamadasIlimitadas === 'true'
-    const internetIlimitadoBoolean = internetIlimitado === 'true'
+    let imageUrl = currentData.rows[0].Imagen;
+
+    if (req.file) {
+      const originalPath = req.file.path;
+      const newName = `${id}-${tipoPlan}${path.extname(req.file.originalname)}`;
+      const newPath = path.join(imagenesDir, newName);
+      await fs.promises.rename(originalPath, newPath);
+
+      imageUrl = `/imagenes/${newName}`;
+
+      // Optionally delete the old image if a new image has been uploaded
+      if (imageUrl !== currentData.rows[0].Imagen) {
+        const oldImagePath = path.join(imagenesDir, currentData.rows[0].Imagen);
+        if (fs.existsSync(oldImagePath)) {
+          await fs.promises.unlink(oldImagePath);
+        }
+      }
+    }
+
     const query = `
-      UPDATE planmovil_ilifla
-      SET
+      UPDATE planmovil_ilifla SET
         Tipo_Plan = $1,
         VPromocion = $2,
         Tiempo_Promocion_Descuento = $3,
@@ -168,17 +186,19 @@ exports.editar_planilimitado = async (req, res) => {
         Gb_Acumulables = $12,
         Gb_Spotify = $13,
         Gb_TV360 = $14,
-        Gb_promocion_acumulables = $16
-        WHERE Id = $15
-    `
+        Gb_promocion_acumulables = $16,
+        Imagen = $17
+      WHERE Id = $15
+    `;
+
     const values = [
       tipoPlan,
-      vPromocionBoolean,
+      vpromocion === 'true',
       parseInt(tiempoPromocionDescuento, 10),
       parseInt(tiempoPromocionGb, 10),
       parseInt(descuento, 10),
-      llamadasIlimitadasBoolean,
-      internetIlimitadoBoolean,
+      llamadasIlimitadas === 'true',
+      internetIlimitado === 'true',
       tipoChip,
       parseInt(bonoTiktok, 10),
       parseFloat(precioBase),
@@ -188,12 +208,13 @@ exports.editar_planilimitado = async (req, res) => {
       parseInt(gbTV360, 10),
       id,
       parseInt(gbpromocionacumulables, 10),
-    ]
+      imageUrl
+    ];
 
-    await db.query(query, values)
-    return res.status(303).redirect('/')
+    await db.query(query, values);
+    return res.status(303).redirect('/');
   } catch (error) {
-    console.error('Error al actualizar el plan móvil:', error)
-    return res.status(500).send('Error al actualizar el plan móvil')
+    console.error('Error al actualizar el plan móvil:', error);
+    res.status(500).send('Error al actualizar el plan móvil');
   }
 }
