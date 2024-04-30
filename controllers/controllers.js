@@ -143,33 +143,30 @@ exports.editar_planilimitado = async (req, res) => {
       gbTV360,
       gbpromocionacumulables,
     } = req.body;
-    console.log(req.body);
     // First, fetch the current data from the database
     const currentData = await db.query('SELECT Imagen FROM planmovil_ilifla WHERE Id = $1', [id]);
     if (currentData.rows.length === 0) {
       // Handle case where no plan matches the given ID
       return res.status(404).json({ message: 'No plan found with the provided ID.' });
     }
-
-    let imageUrl = currentData.rows[0].Imagen;
-
+    let imageUrl = currentData.rows[0].imagen;
+    let nuevaImagen=null;
     if (req.file) {
-      const originalPath = req.file.path;
-      const newName = `${id}-${tipoPlan}${path.extname(req.file.originalname)}`;
-      const newPath = path.join(imagenesDir, newName);
-      await fs.promises.rename(originalPath, newPath);
-
-      imageUrl = `/imagenes/${newName}`;
-
+      const originalPath = req.file.path
+      const newName = `${id}-${tipoPlan}${path.extname(
+        req.file.originalname
+      )}`
+      const newPath = path.join(imagenesDir, newName)
+      const antiguoConfigurado=imageUrl.split("/")[2]
+      const antiguoPath = path.join(imagenesDir, antiguoConfigurado)
+      await fs.promises.rename(originalPath, newPath) 
       // Optionally delete the old image if a new image has been uploaded
-      if (imageUrl !== currentData.rows[0].Imagen) {
-        const oldImagePath = path.join(imagenesDir, currentData.rows[0].Imagen);
-        if (fs.existsSync(oldImagePath)) {
-          await fs.promises.unlink(oldImagePath);
-        }
+      if (currentData.rows[0].imagen!==undefined) {
+        nuevaImagen=`/imagenes/${newName}`
+        await fs.promises.unlink(antiguoPath);
       }
     }
-
+    console.log(nuevaImagen);
     const query = `
       UPDATE planmovil_ilifla SET
         Tipo_Plan = $1,
@@ -186,11 +183,11 @@ exports.editar_planilimitado = async (req, res) => {
         Gb_Acumulables = $12,
         Gb_Spotify = $13,
         Gb_TV360 = $14,
-        Gb_promocion_acumulables = $16,
-        Imagen = $17
-      WHERE Id = $15
+        Gb_promocion_acumulables = $15,
+        Imagen = $16
+        WHERE Id = $17
     `;
-
+   
     const values = [
       tipoPlan,
       vpromocion === 'true',
@@ -206,9 +203,9 @@ exports.editar_planilimitado = async (req, res) => {
       parseInt(gbAcumulables, 10),
       parseInt(gbSpotify, 10),
       parseInt(gbTV360, 10),
-      id,
       parseInt(gbpromocionacumulables, 10),
-      imageUrl
+      imageUrl,
+      id
     ];
 
     await db.query(query, values);

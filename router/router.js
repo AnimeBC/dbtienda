@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 const enviarArchivo = multer({ storage: storage });
 rutas.get("/",control.inicio)
 rutas.post("/registrar_planilimitado",enviarArchivo.single('imagenPlanIlimitado'),control.registrar_planIlimitado)
-rutas.post("/editar_planilimitado",control.editar_planilimitado)
+rutas.post("/editar_planilimitado",enviarArchivo.single('imagenPlanIlimitado'),control.editar_planilimitado)
 rutas.post("/eliminar_planilimitado",control.eliminar_planilimitado)
 /* */
 
